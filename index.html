@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DetAIthon 2K26</title>
+
+    <!-- Money Heist Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            background: #000;
+            overflow-x: hidden;
+        }
+
+        /* ===== MONEY HEIST LIVE BACKGROUND ===== */
+        .bg {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(229, 9, 20, .35), transparent 40%),
+                radial-gradient(circle at 80% 60%, rgba(229, 9, 20, .25), transparent 45%),
+                linear-gradient(180deg, #000, #080000);
+            animation: pulse 6s ease-in-out infinite alternate;
+            z-index: -4;
+        }
+
+        @keyframes pulse {
+            from {
+                filter: brightness(1)
+            }
+
+            to {
+                filter: brightness(1.2)
+            }
+        }
+
+        .lines::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(-45deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(229, 9, 20, .15) 42px,
+                    transparent 44px);
+            animation: moveLines 20s linear infinite;
+            z-index: -3;
+        }
+
+        @keyframes moveLines {
+            from {
+                background-position: 0 0
+            }
+
+            to {
+                background-position: 400px 400px
+            }
+        }
+
+        .sparks span {
+            position: fixed;
+            bottom: -10px;
+            width: 4px;
+            height: 4px;
+            background: #e50914;
+            border-radius: 50%;
+            opacity: .6;
+            animation: spark 10s linear infinite;
+        }
+
+        @keyframes spark {
+            from {
+                transform: translateY(0)
+            }
+
+            to {
+                transform: translateY(-120vh)
+            }
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px
+        }
+
+        .header {
+            text-align: center;
+            padding: 50px 10px;
+        }
+
+        .header h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 54px;
+            letter-spacing: 6px;
+            color: #e50914;
+        }
+
+        .header p {
+            color: #ccc
+        }
+
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, .85);
+            border: 1px solid rgba(229, 9, 20, .4);
+            box-shadow: 0 0 30px rgba(229, 9, 20, .25);
+        }
+
+        .section h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 30px;
+            letter-spacing: 3px;
+            color: #e50914;
+        }
+
+        label {
+            color: #ffb3b3;
+            font-size: 13px
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0 18px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #050505;
+            color: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(90deg, #8b0000, #e50914);
+            color: white;
+            font-size: 20px;
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 3px;
+            cursor: pointer;
+        }
+
+        #qrBox {
+            text-align: center;
+            margin-top: 20px
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .line {
+            height: 2px;
+            width: 80%;
+            margin: 0 auto 40px;
+            background: linear-gradient(90deg, transparent, #e50914, transparent);
+        }
+
+        .footer h3 {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 4px;
+            font-size: 30px;
+            color: #e50914;
+        }
+
+        .name {
+            color: #ffb3b3;
+            font-weight: 600
+        }
+
+        .role {
+            color: #aaa;
+            font-size: 14px
+        }
+
+        .head {
+            color: #e50914;
+            margin-top: 25px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .socials a {
+            text-decoration: none
+        }
+
+        .socials button {
+            margin: 10px;
+            padding: 10px 26px;
+            background: transparent;
+            border: 1px solid #e50914;
+            color: #e50914;
+            font-family: 'Bebas Neue', cursive;
+        }
+
+        .socials button:hover {
+            background: #e50914;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg"></div>
+    <div class="lines"></div>
+
+    <div class="sparks">
+        <span style="left:10%"></span>
+        <span style="left:30%"></span>
+        <span style="left:50%"></span>
+        <span style="left:70%"></span>
+        <span style="left:90%"></span>
+    </div>
+
+    <div class="header">
+        <h1>DetAIthon 2K26</h1>
+        <p>IEEE Robotics & Automation Society</p>
+    </div>
+    <div class="container"
+        style="display: flex; justify-content: center; align-items: center; gap: 24px; margin-bottom: 30px;">
+        <img src="sb logo.jpeg" alt="Event Image 1" class="logo-anim"
+            style="max-width: 140px; width: 100%; aspect-ratio: 1/1; border-radius: 50%; object-fit: cover; box-shadow: 0 0 16px #e5091440;">
+        <img src="RAS logo.jpeg" alt="Event Image 2" class="logo-anim"
+            style="max-width: 140px; width: 100%; aspect-ratio: 1/1; border-radius: 50%; object-fit: cover; box-shadow: 0 0 16px #e5091440;">
+    </div>
+    <style>
+        .logo-anim {
+            animation: popIn 1.2s cubic-bezier(.5, 1.5, .5, 1) both, floatY 3s ease-in-out infinite alternate;
+            transition: box-shadow 0.3s, filter 0.3s;
+        }
+
+        .logo-anim:nth-child(2) {
+            animation-delay: 0.3s, 0s;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.7) rotate(-10deg);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale(1.1) rotate(4deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes floatY {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-18px);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                box-shadow: 0 0 16px #e5091440, 0 0 0px #fff0;
+                filter: brightness(1);
+            }
+
+            50% {
+                box-shadow: 0 0 32px 8px #fff8, 0 0 16px #e50914;
+                filter: brightness(1.4) drop-shadow(0 0 16px #fff8);
+            }
+
+            100% {
+                box-shadow: 0 0 16px #e5091440, 0 0 0px #fff0;
+                filter: brightness(1);
+            }
+        }
+
+        .logo-anim.shine {
+            animation: shine 0.7s linear;
+        }
+    </style>
+    <script>
+        // Add shine effect on touch/click
+        document.querySelectorAll('.logo-anim').forEach(function (el) {
+            el.addEventListener('touchstart', function () {
+                el.classList.add('shine');
+            });
+            el.addEventListener('animationend', function (e) {
+                if (e.animationName === 'shine') {
+                    el.classList.remove('shine');
+                }
+            });
+            // Also allow mouse click for desktop
+            el.addEventListener('mousedown', function () {
+                el.classList.add('shine');
+            });
+        });
+    </script>
+
+    <div class="container">
+
+        <!-- THE MANDATE -->
+        <div class="section">
+            <h2>The Mandate</h2>
+            <p>This 24-hour hackathon is a platform for students to innovate, collaborate, and build impactful tech
+                solutions.</p>
+            <ul>
+                <li>Teams must consist of <b><b style="color:#ffb3b3;">exactly</b> 5 members</b></li>
+                <li>Participants will receive <b><b style="color:#ffb3b3;">2 EEE Credits</b></b></li>
+                <li><b><b style="color:#ffb3b3;">Internship opportunities</b></b> for top-performing teams</li>
+            </ul>
+        </div>
+
+        <!-- TEAM NAME -->
+        <div class="section">
+            <h2>Team Registration Details</h2>
+            <label>Team Name</label>
+            <input id="team">
+        </div>
+
+        <!-- STUDENTS -->
+        <div class="section">
+            <h2>1. Team Leader Details</h2>
+            <label>Full Name</label><input id="l1">
+            <label>Email</label><input id="l2">
+            <label>Mobile</label><input id="l3">
+            <label>Registration Number</label><input id="l4">
+        </div>
+
+        <div class="section">
+            <h2>2. Member Details</h2>
+            <label>Full Name</label><input id="m11">
+            <label>Email</label><input id="m12">
+            <label>Mobile</label><input id="m13">
+            <label>Registration Number</label><input id="m14">
+        </div>
+
+        <div class="section">
+            <h2>3. Member Details</h2>
+            <label>Full Name</label><input id="m21">
+            <label>Email</label><input id="m22">
+            <label>Mobile</label><input id="m23">
+            <label>Registration Number</label><input id="m24">
+        </div>
+
+        <div class="section">
+            <h2>4. Member Details</h2>
+            <label>Full Name</label><input id="m31">
+            <label>Email</label><input id="m32">
+            <label>Mobile</label><input id="m33">
+            <label>Registration Number</label><input id="m34">
+        </div>
+
+        <div class="section">
+            <h2>5. Member Details</h2>
+            <label>Full Name</label><input id="m41">
+            <label>Email</label><input id="m42">
+            <label>Mobile</label><input id="m43">
+            <label>Registration Number</label><input id="m44">
+        </div>
+
+        <!-- PAYMENT DETAILS -->
+        <div class="section" style="font-family: 'Montserrat', sans-serif;">
+            <h2 style="font-family: 'Bebas Neue', cursive; color: #e50914;">Payment & Verification</h2>
+            <p><b style="color:#ffb3b3;">Fee Details:</b> ₹1250 Total (₹250 per head)</p>
+            <p><b style="color:#ffb3b3;">Account Name:</b> IEEE Student Branch</p>
+            <p><b style="color:#ffb3b3;">Account Number:</b> 335602011000121</p>
+            <p><b style="color:#ffb3b3;">Bank Name:</b> Union Bank of India</p>
+            <p><b style="color:#ffb3b3;">Branch Name:</b> Krishnankoil, Watrap</p>
+            <p><b style="color:#ffb3b3;">IFSC Code:</b> UBIN0562734</p>
+            <p><b style="color:#ffb3b3;">MICR Code:</b> 626026503</p>
+        </div>
+
+        <!-- TRANSACTION -->
+        <div class="section">
+            <label>Transaction ID</label>
+            <input id="txn">
+        </div>
+
+        <!-- PAYMENT SCREENSHOT UPLOAD -->
+        <div class="section">
+            <label for="paymentScreenshot" style="color:#ffb3b3; font-size:13px;">Payment Screenshot</label>
+            <input type="file" id="paymentScreenshot" accept="image/*"
+                style="width:100%; padding:13px; margin:5px 0 18px; border-radius:5px; border:0.5px solid #333; background:#050505; color:#fff;">
+        </div>
+
+
+        <!-- WHATSAPP GROUP JOIN BUTTON -->
+        <div class="section" style="text-align:center;">
+            <h2 style="font-family:'Bebas Neue',cursive; font-size:30px; letter-spacing:3px; color:#e50914;">Stay in the
+                Loop</h2>
+            <p style="color:#ccc;">Join our community for team formation, technical support, and hackathon alerts.</p>
+            <a href="https://chat.whatsapp.com/CP1UK1kiwlYLZ7v03ZdRWu" target="_blank" style="text-decoration:none;">
+                <button
+                    style="background:linear-gradient(90deg,#25D366,#128C7E);color:white;font-size:18px;letter-spacing:2px;">
+                    JOIN THE WHATSAPP GROUP
+                </button>
+            </a>
+        </div>
+
+        <button onclick="generateQR()">CONFIRM & GENERATE QR</button>
+
+        <div class="section" id="qrSection" style="display:none">
+            <h2>Your Entry QR</h2>
+            <p>Show this QR at the venue for attendance</p>
+            <div id="qrBox"></div>
+        </div>
+
+    </div>
+
+    <script>
+        function submitAll() {
+
+            if (txn.value.trim() === "") {
+                alert("Please enter Transaction ID");
+                return;
+            }
+
+            const data = {
+                team: team.value,
+                leader: {
+                    name: l1.value,
+                    email: l2.value,
+                    mobile: l3.value,
+                    reg: l4.value
+                },
+                members: [
+                    { name: m11.value, email: m12.value, mobile: m13.value, reg: m14.value },
+                    { name: m21.value, email: m22.value, mobile: m23.value, reg: m24.value },
+                    { name: m31.value, email: m32.value, mobile: m33.value, reg: m34.value },
+                    { name: m41.value, email: m42.value, mobile: m43.value, reg: m44.value }
+                ],
+                txn: txn.value
+            };
+
+            // ✅ Send to backend (with screenshot)
+            const formData = new FormData();
+            formData.append("data", JSON.stringify(data));
+            formData.append("screenshot", paymentScreenshot.files[0]);
+
+            fetch("http://localhost:3000/register", {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.json())
+                .then(() => {
+
+                    // ✅ GENERATE QR AFTER SUCCESS
+                    qrBox.innerHTML = "";
+                    new QRCode(qrBox, {
+                        text: JSON.stringify({
+                            team: data.team,
+                            txn: data.txn
+                        }),
+                        width: 220,
+                        height: 220
+                    });
+
+                    qrSection.style.display = "block";
+                    alert("Registered Successfully!");
+                });
+        }
+    </script>
+
+
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="line"></div>
+
+        <h3>WITH SINCERE REGARDS</h3>
+        <p class="name">Dr. P. Deepalakshmi</p>
+        <p class="role">Dean, School of Computing</p>
+        <p class="name">Dr. R. Raja Subramanian</p>
+        <p class="role">HOD / CSE<br>IEEE SB Counsellor & IEEE RAS Chapter Advisor</p>
+
+        <h3>CONTACT DETAILS</h3>
+
+        <p class="head">Faculty Incharges</p>
+        <p>Dr. M Rajasekaran</p>
+        <p>Dr. N Subbu Lakshmi</p>
+        <p>Mrs. R Syed Ali Fathima</p>
+
+        <p class="head">Student Coordinators</p>
+        <p>CH Siva Mowny +91 8885448275</p>
+        <p>Guru Prasanth +91 9704640862</p>
+        <p>C Vishal +91 8590556670</p>
+        <p>N Sabari Vasan +91 9345864424</p>
+
+        <div class="socials">
+            <div style="display: flex; justify-content: center; gap: 16px;">
+                <a href="https://www.instagram.com/kare_ieee_ras" target="_blank">
+                    <button style="font-size:16px; padding:8px 18px;">Instagram</button>
+                </a>
+                </a>
+                </a>
+                </a>
+                <a href="https://www.linkedin.com/company/kare-ieee-robotics-automation-society/" target="_blank">
+                    <button style="font-size:16px; padding:8px 18px;">LinkedIn</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <script>
+        function generateQR() {
+            if (txn.value.trim() === "") {
+                alert("Please enter Transaction ID");
+                return;
+            }
+            const data = {
+                team: team.value,
+                leader: { name: l1.value },
+                payment: { txn: txn.value, amount: 1250 },
+                attendance: false
+            };
+            qrBox.innerHTML = "";
+            new QRCode(qrBox, { text: JSON.stringify(data), width: 220, height: 220 });
+            qrSection.style.display = "block";
+        }
+
+        function collectAndSendData() {
+            const data = {
+                team: team.value,
+                leader: {
+                    name: l1.value, email: l2.value, mobile: l3.value, reg: l4.value
+                },
+                members: [
+                    { name: m11.value, email: m12.value, mobile: m13.value, reg: m14.value },
+                    { name: m21.value, email: m22.value, mobile: m23.value, reg: m24.value },
+                    { name: m31.value, email: m32.value, mobile: m33.value, reg: m34.value },
+                    { name: m41.value, email: m42.value, mobile: m43.value, reg: m44.value }
+                ],
+                txn: txn.value
+            };
+            fetch('http://localhost:3000/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(res => alert('Registered!'));
+        }
+    </script>
+
+</body>
+
+</html>
